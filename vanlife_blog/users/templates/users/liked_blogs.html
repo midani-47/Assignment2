@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>{{ user.username }}'s Liked Blogs</h1>
+  <ul>
+    {% for blog in liked_blogs %}
+      <li>
+        <a href="{% url 'post_detail' blog.pk %}">{{ blog.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

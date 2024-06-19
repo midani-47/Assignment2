@@ -1,0 +1,28 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+        <h3>Planned Journeys</h3>
+  <br>
+  <ul class="list-group">
+    {% for journey in journeys %}
+      <li class="list-group-item">
+        <h5 align="middle"><a href="{% url 'journey_detail' journey.pk %}">{{ journey.title }}</a></h5>
+                <p align="middle" >From {{ journey.start_date }} to {{ journey.end_date }}
+           <br> Participants: {{ journey.participants.count }}</p><br>
+      </li>
+    {% endfor %}
+    <br>
+{#    <h1>Planned Journeys</h1>#}
+{#    <ul>#}
+{#      {% for journey in journeys %}#}
+{#        <li>#}
+{#          <a href="{% url 'journey_detail' journey.pk %}"><h5>{{ journey.title }}</a></h5>#}
+{#          <p>From {{ journey.start_date }} to {{ journey.end_date }}</p>#}
+{#          <p>Participants: {{ journey.participants.count }}</p>#}
+{#        <br>#}
+{#        </li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+  </div>
+{% endblock %}

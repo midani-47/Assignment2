@@ -1,0 +1,36 @@
+<!-- vanlife_blog/templates/blog/post_list.html -->
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h1>Blog Posts</h1>
+<ul>
+    {% for post in posts %}
+    <li>
+        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+
+{#{% extends 'base_generic.html' %}#}
+{##}
+{#{% block content %}#}
+{#  <div class="container mt-4">#}
+{#    <h1>Blog Feed</h1>#}
+{#    <ul>#}
+{#      {% for post in posts %}#}
+{#        <li>#}
+{#          <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>#}
+{#          <p>By {{ post.author.username }} on {{ post.published_date }}</p>#}
+{#          <p>{{ post.content|truncatewords:30 }}</p>#}
+{#          {% if post.location %}#}
+{#            <p>Location: {{ post.location }}</p>#}
+{#          {% endif %}#}
+{#        </li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+{#  </div>#}
+{#{% endblock %}#}
+{##}

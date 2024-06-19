@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1>{{ profile_user.username }}'s Blogs</h1>
+    <ul>
+      {% for blog in blogs %}
+        <li>
+          <a href="{% url 'post_detail' blog.pk %}">{{ blog.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

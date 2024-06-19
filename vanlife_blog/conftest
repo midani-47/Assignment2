@@ -1,0 +1,30 @@
+# vanlife_blog/conftest.py
+import pytest
+from django.conf import settings
+
+@pytest.fixture(scope='session')
+def django_db_setup():
+    settings.DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
+
+
+# import os
+# import django
+# from django.conf import settings
+# import pytest
+#
+# def pytest_configure():
+#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vanlife_blog.settings')
+#     settings.DEBUG = False
+#     django.setup()
+#
+# @pytest.fixture(scope='session')
+# def django_db_setup():
+#     settings.DATABASES['default'] = {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': ':memory:',
+#     }

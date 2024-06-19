@@ -1,0 +1,158 @@
+<!-- vanlife_blog/users/templates/users/profile.html -->
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>{{ profile_user.username }}'s Profile</h2>
+  <p>{{ profile_user.profile.bio }}</p>
+{#  <a href="{% url 'profile_blogs' profile_user.username %}" class="btn btn-primary">Blogs</a>#}
+{#  <h2>Blogs</h2>#}
+{#  <ul>#}
+{#    {% for blog in blogs %}#}
+{#      <li>#}
+{#        <a href="{% url 'post_detail' blog.pk %}">{{ blog.title }}</a>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+      <h3>Posted Blogs</h3>
+  <ul class="list-group">
+    {% for blog in blogs %}
+      <li class="list-group-item">
+        <a href="{% url 'post_detail' blog.pk %}">{{ blog.title }}</a>
+      </li>
+    {% endfor %}
+    <br>
+  <h3>Joined Journeys</h3>
+  <ul class="list-group">
+    {% for journey in joined_journeys %}
+      <li class="list-group-item">
+        <a href="{% url 'journey_detail' journey.pk %}">{{ journey.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+
+
+{#{% extends 'base_generic.html' %}#}
+{##}
+{#{% extends 'base_generic.html' %}#}
+{##}
+{#{% block content %}#}
+{#<div class="container">#}
+{#    <div class="row">#}
+{#        <div class="col-md-8 offset-md-2">#}
+{#            <div class="card my-4">#}
+{#                <div class="card-body">#}
+{#                    <h1>{{ profile_user.username }}'s Profile</h1>#}
+{##}
+{#                    <p>{{ profile_user.profile.bio }}</p>#}
+{#                    <a href="{% url 'profile_blogs' profile_user.username %}" class="btn btn-primary">Blogs</a>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <h2>Joined Journeys</h2>#}
+{#            <ul class="list-group">#}
+{#                {% for journey in joined_journeys %}#}
+{#                    <li class="list-group-item">#}
+{#                        <a href="{% url 'journey_detail' journey.pk %}">{{ journey.title }}</a>#}
+{#                        <p><small class="text-muted">Start: {{ journey.start_date }}</small></p>#}
+{#                        <p><small class="text-muted">End: {{ journey.end_date }}</small></p>#}
+{#                    </li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+{##}
+{#{% extends 'base_generic.html' %}#}
+{##}
+{#{% block content %}#}
+{#  <h1>{{ profile_user.username }}'s Profile</h1>#}
+{#  <p>{{ profile_user.profile.bio }}</p>#}
+{##}
+{#  <h2>Blogs</h2>#}
+{#  <ul>#}
+{#    {% for blog in blogs %}#}
+{#      <li>#}
+{#        <a href="{% url 'post_detail' blog.pk %}">{{ blog.title }}</a>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{##}
+{#  <h2>Liked Posts</h2>#}
+{#  <ul>#}
+{#    {% for liked_blog in liked_blogs %}#}
+{#      <li>#}
+{#        <a href="{% url 'post_detail' liked_blog.pk %}">{{ liked_blog.title }}</a>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{##}
+{#  <h2>Joined Journeys</h2>#}
+{#  <ul>#}
+{#    {% for journey in joined_journeys %}#}
+{#      <li>#}
+{#        <a href="{% url 'journey_detail' journey.pk %}">{{ journey.title }}</a>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{#{% endblock %}#}
+{##}
+{##}
+{#{% extends 'base_generic.html' %}#}
+{##}
+{#{% block content %}#}
+{#  <h1>{{ profile_user.username }}'s Profile</h1>#}
+{#  <p>{{ profile_user.profile.bio }}</p>#}
+{##}
+{#  <h2>Blogs</h2>#}
+{#  <ul>#}
+{#    {% for blog in blogs %}#}
+{#      <li>#}
+{#        <a href="{% url 'post_detail' blog.pk %}">{{ blog.title }}</a>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{##}
+{#  <h2>Joined Journeys</h2>#}
+{#  <ul>#}
+{#    {% for journey in joined_journeys %}#}
+{#      <li>#}
+{#        <a href="{% url 'journey_detail' journey.pk %}">{{ journey.title }}</a>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{#{% endblock %}#}
+{##}
+{##}
+{#{% extends 'base_generic.html' %}#}
+{##}
+{#{% block content %}#}
+{#  <h2>{{ profile_user.username }}'s Profile</h2>#}
+{#    <hr>#}
+{#  <p>{{ profile_user.profile.bio }}</p>#}
+{##}
+{#  <h4>Blogs</h4>#}
+{#  <ul>#}
+{#    {% for blog in blogs %}#}
+{#      <li>#}
+{#        <a href="{% url 'post_detail' blog.pk %}">{{ blog.title }}</a>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{##}
+{#  <h2>Joined Journeys</h2>#}
+{#  <ul>#}
+{#    {% for journey in joined_journeys %}#}
+{#      <li>#}
+{#        <a href="{% url 'journey_detail' journey.pk %}">{{ journey.title }}</a>#}
+{#        <p>From {{ journey.start_date }} to {{ journey.end_date }}</p>#}
+{#        <p>{{ journey.description }}</p>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{#{% endblock %}#}

@@ -1,0 +1,118 @@
+<!-- vanlife_blog/templates/base_generic.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Vanlife Blog{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 4.5rem;
+        }
+        .content-background {
+            background: linear-gradient(135deg, #faf9f9, #abbdb4);
+            padding: 20px;
+            border-radius: 10px;
+            color: #363d40;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .content-background h1, .content-background h2, .content-background p, .content-background ul, .content-background li {
+            color: #3b4549;
+        }
+        .content-background a {
+            color: #879b76;
+            text-decoration: underline;
+        }
+        .content-background a:hover {
+            color: #620d0a;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="{% url 'home' %}">Vanlife Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' user.username %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'post_new' %}">Create Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog_feed' %}">Blog Feed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'journey_list' %}">Planned Journeys</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'journey_new' %}">New Journey</a>
+                </li>
+                <li class="nav-item">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link nav-link">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+        <form class="form-inline ml-auto" action="{% url 'search' %}" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+    <div class="content-background">
+        {% block content %}
+        {% if user.is_authenticated %}
+            <h4>Welcome {{ user.username }}!</h4>
+            <h5><a href="{% url 'blog_feed' %}"> Blog Feed</a> has all the posts we have, along with the adventurous <a href="{% url 'journey_list' %}">journeys</a> people arrange to join each other.</h5>
+            <hr>
+            <br><br>
+            <iframe width="500" height="290" src="https://www.youtube.com/embed/JgvulfOZ-zU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <iframe width="500" height="290" src="https://www.youtube.com/embed/jSA__j8BTOs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% else %}
+            <h4>Welcome to Vanlife Blog!</h4>
+            <hr>
+            <h6> This is exclusive. To have access to the posts, you better <a href="{% url 'register' %}"> register</a> for our amazingly special content.</h6>
+            <hr>
+            <p>This platform is your one-stop shop for everything vanlife, whether you're a seasoned nomad or an aspiring adventurer.</p>
+            <h5>Explore and Share Your Vanlife Journey:</h5>
+            <ul>
+                <li><strong>Find Inspiration:</strong> Dive deep into inspiring stories, insightful tips, and practical advice from fellow vanlifers. Learn how to build your dream van, discover hidden gems on the road, and gain valuable knowledge to navigate the exciting world of vanlife.</li>
+                <li><strong>Become a Content Creator:</strong> Share your unique vanlife experiences! Create a blog to document your adventures, destinations, and practical wisdom you've acquired along the way. Inspire others and contribute to the ever-growing vanlife knowledge base.</li>
+                <li><strong>Discover a World of Possibilities:</strong> Explore a continuously updated feed of blog posts brimming with diverse vanlife experiences. Find inspiration for your next adventure, learn from others' journeys, and gain valuable insights into the vanlife culture.</li>
+            </ul>
+            <h5>Connect with the Vanlife Community:</h5>
+            <ul>
+                <li><strong>Uncover Must-See and Must-Avoid Spots:</strong> Share hidden gems, breathtaking landscapes, and idyllic campsites you've encountered on your travels. Help others navigate the road by pinpointing locations to avoid. Provide valuable reviews and comments to create a comprehensive community resource.</li>
+                <li><strong>Plan Your Dream Adventure:</strong> The world is your oyster! Post your planned journeys and invite fellow vanlifers with similar interests to join you. Expand your social circle, create lasting memories, and experience the joy of vanlife together.</li>
+            </ul>
+            <p>Together, Let's Build an Unbeatable Vanlife Resource!</p>
+            <p>This platform is designed to be a collaborative space for vanlife enthusiasts. Share your knowledge, experiences, and passion for the open road. Let's create a supportive community that empowers everyone to embark on unforgettable vanlife adventures!</p>
+        {% endif %}
+        {% endblock %}
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

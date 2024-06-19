@@ -1,0 +1,35 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card my-4">
+                <div class="card-body">
+                    <h2>{{ journey.title }}</h2>
+                    <p>{{ journey.description }}</p>
+                    <p><strong>Start Date/Location:</strong> {{ journey.start_date }}</p>
+                    <p><strong>End Date/Location:</strong> {{ journey.end_date }}</p>
+                    <p><strong>Participants:</strong></p>
+                    <ul>
+                        {% for participant in journey.participants.all %}
+                        <li><a href="{% url 'profile' participant.username %}">{{ participant.username }}</a></li>
+                        {% endfor %}
+                    </ul>
+  {% if request.user not in journey.participants.all %}
+    <form method="post" action="{% url 'journey_join' journey.pk %}">
+      {% csrf_token %}
+      <button type="submit">Join Journey</button>
+    </form>
+  {% else %}
+    <form method="post" action="{% url 'journey_leave' journey.pk %}">
+      {% csrf_token %}
+      <button type="submit">Leave Journey</button>
+    </form>
+  {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

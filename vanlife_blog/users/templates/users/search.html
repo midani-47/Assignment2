@@ -1,0 +1,86 @@
+{% extends 'base_generic.html' %}
+
+{% load blog_extras %}
+
+{% block content %}
+  <h2>Search Results:</h2>
+<hr>
+  <h4>Users</h4>
+  <ul>
+    {% for user in users %}
+      <li>
+        <a href="{% url 'profile' user.username %}">{{ user.username }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h4>Blog Posts</h4>
+  <ul>
+    {% for post in posts %}
+      <li>
+        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h4>Journeys</h4>
+  <ul>
+    {% for journey in journeys %}
+      <li>
+        <a href="{% url 'journey_detail' journey.pk %}">{{ journey.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+
+{##}
+{#{% extends 'base_generic.html' %}#}
+{##}
+{#{% block content %}#}
+{#  <h3>Search Results</h3>#}
+{#    <hr>#}
+{##}
+{#  <h4>Users</h4>#}
+{#  <ul>#}
+{#    {% for user in users %}#}
+{#      <li>#}
+{#        <a href="{% url 'profile' user.username %}">{{ user.username }}</a>#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{##}
+{#  <h4>Blog Posts</h4>#}
+{#  <ul>#}
+{#    {% for post in posts %}#}
+{#      <li>#}
+{#        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>#}
+{#        {% if request.user.is_authenticated %}#}
+{#          {% if post in liked_posts %}#}
+{#            | <a href="{% url 'post_unlike' post.pk %}">Unlike</a>#}
+{#          {% else %}#}
+{#            | <a href="{% url 'post_like' post.pk %}">Like</a>#}
+{#          {% endif %}#}
+{#        {% endif %}#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{##}
+{#  <h4>Journeys</h4>#}
+{#  <ul>#}
+{#    {% for journey in journeys %}#}
+{#      <li>#}
+{#        <a href="{% url 'journey_detail' journey.pk %}">{{ journey.title }}</a>#}
+{#        <p>From {{ journey.start_date }} to {{ journey.end_date }}</p>#}
+{#        <p>{{ journey.description }}</p>#}
+{#        {% if request.user.is_authenticated %}#}
+{#          {% if journey in joined_journeys %}#}
+{#            | <a href="{% url 'journey_leave' journey.pk %}">Leave Journey</a>#}
+{#          {% else %}#}
+{#            | <a href="{% url 'journey_join' journey.pk %}">Join Journey</a>#}
+{#          {% endif %}#}
+{#        {% endif %}#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{#{% endblock %}#}

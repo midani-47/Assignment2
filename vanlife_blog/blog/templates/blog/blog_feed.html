@@ -1,0 +1,84 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>Blog Feed</h2>
+            <div class="my-4">
+                <h3>Posts</h3>
+                {% for post in posts %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ post.title }}</h4>
+                            <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                            <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read More</a>
+                            <p class="card-text">
+                                <small class="text-muted">By <a href="{% url 'profile' post.author.username %}">{{ post.author.username }}</a> on {{ post.published_date }}</small>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="my-4">
+                <h2>Journeys</h2>
+                {% for journey in journeys %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ journey.title }}</h3>
+                            <p class="card-text">{{ journey.description|truncatewords:30 }}</p>
+                            <a href="{% url 'journey_detail' journey.pk %}" class="btn btn-primary">Read More</a>
+                            <p class="card-text">
+                                <small class="text-muted">Start Date: {{ journey.start_date }} | End Date: {{ journey.end_date }}</small>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{#{% extends 'base_generic.html' %}#}
+{##}
+{#{% block title %}Blog Feed{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#  <h1>Blog Feed</h1>#}
+{##}
+{#  <form method="get" action="{% url 'blog_feed' %}" class="form-inline mb-3">#}
+{#    <input type="text" name="q" value="{{ query }}" class="form-control mr-2" placeholder="Search blog posts">#}
+{#    <input type="text" name="author" value="{{ author }}" class="form-control mr-2" placeholder="Author">#}
+{#    <input type="date" name="date_from" value="{{ date_from }}" class="form-control mr-2" placeholder="Date from">#}
+{#    <input type="date" name="date_to" value="{{ date_to }}" class="form-control mr-2" placeholder="Date to">#}
+{#    <button type="submit" class="btn btn-primary">Search</button>#}
+{#  </form>#}
+{##}
+{#  <ul>#}
+{#    {% for post in posts %}#}
+{#      <li>#}
+{#        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> by {{ post.author.username }} on {{ post.created_date }}#}
+{#      </li>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{##}
+{#  <div class="pagination">#}
+{#    <span class="step-links">#}
+{#        {% if posts.has_previous %}#}
+{#            <a href="?page=1&q={{ query }}&author={{ author }}&date_from={{ date_from }}&date_to={{ date_to }}">&laquo; first</a>#}
+{#            <a href="?page={{ posts.previous_page_number }}&q={{ query }}&author={{ author }}&date_from={{ date_from }}&date_to={{ date_to }}">previous</a>#}
+{#        {% endif %}#}
+{##}
+{#        <span class="current">#}
+{#            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.#}
+{#        </span>#}
+{##}
+{#        {% if posts.has_next %}#}
+{#            <a href="?page={{ posts.next_page_number }}&q={{ query }}&author={{ author }}&date_from={{ date_from }}&date_to={{ date_to }}">next</a>#}
+{#            <a href="?page={{ posts.paginator.num_pages }}&q={{ query }}&author={{ author }}&date_from={{ date_from }}&date_to={{ date_to }}">last &raquo;</a>#}
+{#        {% endif %}#}
+{#    </span>#}
+{#  </div>#}
+{#{% endblock %}#}
