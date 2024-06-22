@@ -9,19 +9,11 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
-#######################################################
 
-# class Profile(models.Model):
-#     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-#     bio = models.TextField(blank=True, null=True)
-#
-#     def __str__(self):
-#         return self.user.username
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True, default="")
-    # followers = models.ManyToManyField('self', symmetrical=False, related_name='following', blank=True)
-
+    user= models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    bio= models.TextField(blank=True, default="") #for later?
+    # followers= models.ManyToManyField('self', symmetrical=False, related_name='following', blank=True)
     def __str__(self):
         return f'{self.user.username} Profile'
 
@@ -36,7 +28,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 post_save.connect(create_or_update_user_profile, sender=CustomUser)
 
 
-# @receiver(post_save, sender=CustomUser)
+# @receiver(post_save, sender=CustomUser) # also dropped for now
 # def create_or_update_user_profile(sender, instance, created, **kwargs):
 #     if created:
 #         Profile.objects.create(user=instance)
