@@ -1,2 +1,5 @@
-I used-tested the project with a few friends and found out that the latest version of Django is only installable on the upgraded versions of python. Therefore, I downgraded the version in the requirements.txt to : Django==4.2.13
+I used-tested the project with a few friends and found out that the latest version of Django is only installable on the upgraded versions of python. 
+Therefore, I downgraded the version in the requirements.txt to : Django==4.2.13
 
+
+Upon testing, some functions had to be modified, and others had to be even removed.
