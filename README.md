@@ -8,8 +8,13 @@ Please ensure your Python version is upgraded. For compatibility, although I use
 ## Installation
 
 1. After cloning the repo, please create a virtual environment in the directory containing `requirements.txt`:
+    - On Windows:
     ```bash
     python -m venv venv
+    ```
+    - On macOS and Linux:
+    ```bash
+    python3 -m venv venv
     ```
 
 2. Activate the virtual environment:
